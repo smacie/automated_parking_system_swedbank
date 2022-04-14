@@ -1,44 +1,46 @@
 package com.swedbank.park.backend.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
- * This class holds ticket payment details
+ * This domain class holds ticket payment details
  */
+
+@Entity
+@Table(name="payment")
 public class Payment {
-    private long id;
-    private long ticketNumber;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "create_date")
     private Date date;
 
-    public Payment(long ticketNumber, BigDecimal price, Date date) {
-        this.ticketNumber = ticketNumber;
-        this.price = price;
-        this.date = date;
-    }
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
 
-    public Payment(long id, long ticketNumber, BigDecimal price, Date date) {
-        this.id = id;
-        this.ticketNumber = ticketNumber;
-        this.price = price;
-        this.date = date;
-    }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getTicketNumber() {
-        return ticketNumber;
-    }
-
-    public void setTicketNumber(long ticketNumber) {
-        this.ticketNumber = ticketNumber;
     }
 
     public BigDecimal getPrice() {
@@ -55,5 +57,13 @@ public class Payment {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 }

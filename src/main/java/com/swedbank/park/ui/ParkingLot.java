@@ -1,8 +1,9 @@
-package com.swedbank.park.frontend;
+package com.swedbank.park.ui;
 
-import com.swedbank.park.backend.domain.Slot;
+import com.swedbank.park.ui.pojo.SlotInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Count of parking slots list of all parking slots
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class ParkingLot {
     private static final int numberOfSlots = 5;
 
-    private ArrayList<Slot> listOfSlots = null;
+    private ArrayList<SlotInfo> listOfSlots = null;
 
     public ParkingLot() {
         listOfSlots = new ArrayList<>();
@@ -21,9 +22,9 @@ public class ParkingLot {
      *
      * @return list of the slots in the parking lot
      */
-    public ArrayList<Slot> getParkingSlots() {
+    public ArrayList<SlotInfo> getParkingSlots() {
         for (int i = 1; i <= numberOfSlots; i++) {
-            Slot slot = new Slot(i, 0, 0, true);
+            SlotInfo slot = new SlotInfo(i, 0, 0, true);
             listOfSlots.add(slot);
         }
         return listOfSlots;

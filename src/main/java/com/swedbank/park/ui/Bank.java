@@ -1,4 +1,6 @@
-package com.swedbank.park.frontend;
+package com.swedbank.park.ui;
+
+import com.swedbank.park.ui.pojo.CardInfo;
 
 /**
  * Card validation, assuming always successfully paid

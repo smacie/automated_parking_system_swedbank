@@ -1,7 +1,9 @@
-package com.swedbank.park.frontend;
+package com.swedbank.park.ui;
 
-import com.swedbank.park.backend.domain.Slot;
-import com.swedbank.park.backend.domain.Ticket;
+import com.swedbank.park.ParkingSystemApplicationUI;
+import com.swedbank.park.ui.pojo.CardInfo;
+import com.swedbank.park.ui.pojo.SlotInfo;
+import com.swedbank.park.ui.pojo.TicketInfo;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -18,12 +20,12 @@ public class ParkingSystemApp {
     /**
      * Launch the application.
      */
-    static ParkingSystemFrame mainFrame;
+    static ParkingSystemApplicationUI mainFrame;
 
 
-    private ArrayList<Slot> slots = null;
-    ArrayList<Ticket> ticketList = null;
-    Slot slot = null;
+    private ArrayList<SlotInfo> slots = null;
+    ArrayList<TicketInfo> ticketList = null;
+    SlotInfo slot = null;
 
     private long startTimeMilliseconds;
     private long startTime = 0;
@@ -49,13 +51,13 @@ public class ParkingSystemApp {
      *
      * @return Ticket object reference if there is a slot available or null if no slots available
      */
-    public Ticket park() {
-        Slot slot = checkAvailability(); // check for available slots
+    public TicketInfo park() {
+        SlotInfo slot = checkAvailability(); // check for available slots
 
         if (slot != null) {
             startTimeMilliseconds = System.currentTimeMillis();
 
-            Ticket ticket = new Ticket(slot.getSlotNumber(), startTimeMilliseconds, date);
+            TicketInfo ticket = new TicketInfo(slot, startTimeMilliseconds, date);
             ticketList.add(ticket); // save the ticket in ticketList
 
             slot.setAvailable(false); // this slot is no more available
@@ -70,12 +72,12 @@ public class ParkingSystemApp {
      *
      * @return slot if available or null if no slots are available
      */
-    public Slot checkAvailability() {
+    public SlotInfo checkAvailability() {
         for (int i = 0; i < slots.size(); i++) {
             slot = slots.get(i);
 
             // check availability
-            if (slot.getAvailable() == true) {
+            if (slot.isAvailable() == true) {
                 return slot;
             }
         }
@@ -100,7 +102,7 @@ public class ParkingSystemApp {
         boolean isValid = false;
 
         for (int i = 0; i < ticketList.size(); i++) {
-            long slotNumber = ticketList.get(i).getSlotNumber();
+            long slotNumber = ticketList.get(i).getSlot().getSlotNumber();
 
             if (ticketNumEntered == slotNumber) {
                 isValid = true;

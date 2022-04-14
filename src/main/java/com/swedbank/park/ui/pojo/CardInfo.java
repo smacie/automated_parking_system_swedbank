@@ -1,4 +1,4 @@
-package com.swedbank.park.frontend;
+package com.swedbank.park.ui.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +13,8 @@ public class CardInfo {
     String cardNumber;
     String cvvCode;
     String expiryDate;
+
+    public  CardInfo(){}
 
     public CardInfo(String cardNumber, String cvvCode, String expiry) {
         this.cardNumber = cardNumber;

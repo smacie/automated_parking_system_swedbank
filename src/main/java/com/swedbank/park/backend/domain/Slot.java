@@ -1,26 +1,36 @@
 package com.swedbank.park.backend.domain;
 
-/**
- * Represents individual parking slot and stores slot number and its availability status
- */
-public class Slot {
-    private long slotNumber;
-    private double width;
-    private double height;
-    private boolean available;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public Slot(long slotNumber, double width, double height, boolean available) {
-        this.slotNumber = slotNumber;
-        this.width = width;
-        this.height = height;
-        this.available = available;
-    }
+/**
+ * THis domain represents individual parking slot and stores slot number and its availability status
+ */
+
+@Entity
+@Table(name="slot")
+public class Slot {
+
+    @Id
+    private Long slotNumber;
+
+    @Column(name = "width")
+    private double width;
+
+    @Column(name = "height")
+    private double height;
+
+    @Column(name = "is_available")
+    private boolean availability;
+
 
     public long getSlotNumber() {
         return slotNumber;
     }
 
-    public void setSlotNumber(long slotNumber) {
+    public void setSlotNumber(Long slotNumber) {
         this.slotNumber = slotNumber;
     }
 
@@ -40,11 +50,11 @@ public class Slot {
         this.height = height;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public boolean hasAvailability() {
+        return availability;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
     }
 }

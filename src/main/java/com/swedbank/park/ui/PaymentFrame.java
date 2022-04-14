@@ -1,4 +1,6 @@
-package com.swedbank.park.frontend;
+package com.swedbank.park.ui;
+
+import com.swedbank.park.ParkingSystemApplicationUI;
 
 import java.awt.GridLayout;
 
@@ -97,7 +99,7 @@ public class PaymentFrame extends JFrame {
                             "Visit again! ");
 
                     paymentFrame.dispose();
-                    ParkingSystemFrame.mainFrame.setVisible(true);
+                    ParkingSystemApplicationUI.mainFrame.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(payButton, "Invalid Credit Card! \nPlease re-enter the details again.");
                     ccTextField.setText("");

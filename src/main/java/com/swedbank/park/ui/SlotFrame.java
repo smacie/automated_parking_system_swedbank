@@ -1,4 +1,6 @@
-package com.swedbank.park.frontend;
+package com.swedbank.park.ui;
+
+import com.swedbank.park.ParkingSystemApplicationUI;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -66,8 +68,8 @@ public class SlotFrame extends JFrame {
                             "Continue with the payment? ");
                     if (option != JOptionPane.YES_OPTION) {
                         JOptionPane.showMessageDialog(btnEnter, "Please contact management for any issues!");
-                        ParkingSystemFrame.mainFrame = new ParkingSystemFrame();
-                        ParkingSystemFrame.mainFrame.setVisible(true);
+                        ParkingSystemApplicationUI.mainFrame = new ParkingSystemApplicationUI();
+                        ParkingSystemApplicationUI.mainFrame.setVisible(true);
                         return;
                     } else {
                         // make the slot available
